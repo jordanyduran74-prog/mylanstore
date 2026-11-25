@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MylanStore - Panel de Administración</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+
+    <header class="admin-header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1>MylanStore 🛠️ Panel Admin</h1>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="btn-volver">Volver a la Tienda 🏠</a>
+                <button type="button" class="btn-logout" id="btn-logout">Cerrar Sesión 🔒</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Pestañas de navegación interna del Admin -->
+        <div class="admin-nav">
+            <button type="button" class="tab-btn active" id="tab-productos-btn">📦 Gestión de Productos</button>
+            <button type="button" class="tab-btn" id="tab-pedidos-btn">🛒 Gestión de Pedidos</button>
+            <button type="button" class="tab-btn" id="tab-mensajes-btn">✉️ Mensajes</button>
+        </div>
+
+        <!-- SECCIÓN 1: PRODUCTOS (CRUD) -->
+        <section id="seccion-productos" class="orders-section admin-section">
+            <h2>Gestión de Inventario de Productos</h2>
+            <p class="subtitle">Agrega, edita o elimina los productos disponibles en la tienda.</p>
+            
+            <form id="form-producto" class="admin-form">
+                <input type="hidden" id="admin-prod-id">
+                <div class="admin-form-grid">
+                    <input type="text" id="admin-nombre" placeholder="Nombre del producto" required>
+                    <input type="text" id="admin-categoria" placeholder="Categoría (ej: perifericos, audio)" required>
+                </div>
+                <div class="admin-form-grid">
+                    <input type="number" step="0.01" id="admin-precio" placeholder="Precio ($)" required>
+                    <input type="text" id="admin-imagen" placeholder="Ruta de imagen (ej: img/teclado.jpg)" required>
+                </div>
+                <img id="admin-preview-img" class="admin-preview" alt="Vista previa de la imagen" style="display:none;">
+                <textarea id="admin-descripcion" placeholder="Descripción detallada" rows="3" required></textarea>
+                
+                <div class="admin-form-actions">
+                    <button type="submit" class="btn" id="btn-guardar-prod">Guardar Producto</button>
+                    <button type="button" class="btn btn-secondary" id="btn-cancelar-admin" style="display:none;">Cancelar Edición</button>
+                </div>
+            </form>
+
+            <h2 class="section-subtitulo">Inventario Actual en Base de Datos</h2>
+            <div class="table-responsive">
+                <table class="admin-table" id="tabla-admin-productos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PEDIDOS DE CLIENTES -->
+        <section id="seccion-pedidos" class="orders-section admin-section" style="display: none;">
+            <h2>Pedidos Recibidos desde la Tienda</h2>
+            <p class="subtitle">Aquí podrás ver los datos del cliente, los productos solicitados y cambiar el estado del envío o pago.</p>
+
+            <div class="resumen-pedidos" id="resumen-pedidos"></div>
+            
+            <div class="table-responsive">
+                <table class="admin-table" id="tabla-admin-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID / Fecha</th>
+                            <th>Cliente</th>
+                            <th>Cédula / Tel</th>
+                            <th>Banco / Ref</th>
+                            <th>Productos / Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: MENSAJES DEL FORMULARIO DE CONTACTO -->
+        <section id="seccion-mensajes" class="orders-section admin-section" style="display: none;">
+            <h2>Mensajes de Clientes</h2>
+            <p class="subtitle">Consultas enviadas desde el formulario "Contáctanos" de la tienda.</p>
+
+            <div class="table-responsive">
+                <table class="admin-table" id="tabla-admin-mensajes">
+                    <thead>
+                        <tr>
+                            <th>ID / Fecha</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Mensaje</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <footer>
+        <p>&copy; 2026 MylanStore - Panel de Control</p>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>

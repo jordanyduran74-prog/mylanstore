@@ -1,0 +1,17 @@
+# Base de datos local (contiene datos reales de clientes; server.py la crea automáticamente)
+db/
+*.db
+
+# Archivos generados por Python
+__pycache__/
+*.pyc
+
+# Archivo vacío sin uso
+conexion.php
+
+# Sistema operativo / editores
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.claude/

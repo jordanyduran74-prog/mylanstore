@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MylanStore - Catálogo de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Encabezado / Hero Integrado Unificado con Menú Superior -->
+    <header class="hero-header" id="inicio">
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1>MylanStore</h1>
+            </div>
+
+            <!-- Menú de Navegación + Botones a la derecha -->
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#" id="btn-open-admin">Admin 🛠️</a></li>
+                    <li><a href="#contacto">Contáctanos</a></li>
+                </ul>
+                <button class="cart-btn" id="cart-btn" aria-label="Ver carrito">
+                    🛒 Carrito <span id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <p class="tagline">Tu tienda de confianza para componentes y accesorios tecnológicos</p>
+            <h2>Lleva tu setup al siguiente nivel</h2>
+            <p class="description">Encuentra los mejores periféricos, componentes y accesorios al mejor precio con garantía oficial.</p>
+            <a href="#catalogo" class="btn-hero">Explorar Catálogo</a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal (Catálogo) -->
+    <main class="container" id="catalogo">
+        <h2>Nuestros Productos Destacados</h2>
+
+        <!-- Barra de Búsqueda y Filtros por Categoría -->
+        <section class="filtros-container">
+            <div class="search-box">
+                <input type="text" id="buscador" placeholder="Buscar producto...">
+            </div>
+            
+            <div class="categorias-box">
+                <label for="select-categoria">Filtrar por categoría:</label>
+                <select id="select-categoria">
+                    <option value="todas">Todas las categorías</option>
+                    <option value="perifericos">Periféricos</option>
+                    <option value="audio">Audio</option>
+                    <option value="monitores">Monitores</option>
+                    <option value="almacenamiento">Almacenamiento</option>
+                    <option value="accesorios">Accesorios</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Contenedor para las tarjetas de productos -->
+        <div class="grid-productos" id="grid-productos"></div>
+    </main>
+
+    <!-- Sección Contáctanos -->
+    <section class="contacto-section" id="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <p class="contacto-subtitle">¿Tienes alguna duda o consulta sobre nuestros productos? Escríbenos.</p>
+
+            <form class="contacto-form" id="contacto-form" novalidate>
+                <div class="form-group">
+                    <input type="text" id="nombre" placeholder="Tu Nombre (mín. 3 caracteres)" required>
+                    <span class="error-message" id="error-nombre">El nombre debe tener al menos 3 caracteres.</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
+                    <span class="error-message" id="error-email">Ingresa un correo electrónico válido (ej. usuario@dominio.com).</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí (mín. 10 caracteres)..." required></textarea>
+                    <span class="error-message" id="error-mensaje">El mensaje debe contener al menos 10 caracteres.</span>
+                </div>
+                <button type="submit" class="btn" id="btn-submit-contacto" disabled>Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal Ventana del Carrito -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Tu Carrito de Compras</h3>
+                <button class="close-cart" id="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <p class="cart-empty">El carrito está vacío.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0.00</span>
+                </div>
+                <button type="button" class="btn btn-checkout">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalle de Producto -->
+    <div id="modal-detalle" class="modal">
+        <div class="modal-content">
+            <span id="close-detalle" class="close-btn">&times;</span>
+            <div id="detalle-contenido"></div>
+        </div>
+    </div>
+
+    <!-- Contenedor para notificaciones flotantes (Toasts) -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <footer>
+        <p>&copy; 2026 MylanStore - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón Flotante del Asistente de Ventas -->
+    <button id="floating-assistant-btn" aria-label="Abrir Asistente de Ventas">
+        🤖 Asistente <span class="badge-faq">Chat</span>
+    </button>
+
+    <!-- Contenedor Flotante (Widget estilo Chatbot) -->
+    <div id="floating-assistant-modal" class="assistant-modal">
+        <div class="assistant-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.2rem;">🤖</span>
+                <div>
+                    <h3 style="margin: 0; font-size: 0.95rem; color: white;">Asistente MylanStore</h3>
+                    <small style="color: #4ade80; font-size: 0.75rem;">● En línea</small>
+                </div>
+            </div>
+            <button id="close-assistant-modal" class="close-assistant">&times;</button>
+        </div>
+
+        <!-- Área de mensajes del Chatbot -->
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-msg bot-msg">
+                👋 ¡Hola! Soy tu asistente virtual. ¿En qué te puedo ayudar hoy? Pregúntame sobre <strong>garantías</strong>, <strong>precios</strong>, <strong>métodos de pago</strong>, <strong>soporte</strong> o <strong>reservas</strong>.
+            </div>
+        </div>
+
+        <!-- Entrada del usuario para chatear -->
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Escribe tu duda aquí..." autocomplete="off" required>
+            <button type="submit" id="chat-send-btn">Enviar 📩</button>
+        </form>
+    </div>
+
+    <!-- Modal para Autenticación de Administrador -->
+    <div id="modal-auth-admin" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span id="close-auth-admin" class="close-btn">&times;</span>
+            <h3 style="margin-bottom: 1rem;">🔒 Acceso Restringido</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Ingresa la clave de administrador para continuar.
+            </p>
+            <form id="form-login-admin">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <input type="password" id="input-admin-password" placeholder="Contraseña de administrador" required style="padding: 10px; background: var(--surface-bg); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Ingresar 🔑</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
