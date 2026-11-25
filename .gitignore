@@ -15,3 +15,7 @@ desktop.ini
 .DS_Store
 .vscode/
 .claude/
+
+# Material de la presentación y archivos temporales de Playwright
+presentacion/
+.playwright-mcp/

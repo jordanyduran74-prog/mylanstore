@@ -675,7 +675,7 @@ footer {
 #floating-assistant-btn {
     position: fixed;
     bottom: 25px;
-    right: 25px;
+    left: 25px;
     background: linear-gradient(135deg, #7c3aed, #2563eb);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -709,7 +709,7 @@ footer {
     display: none;
     position: fixed;
     bottom: 90px;
-    right: 25px;
+    left: 25px;
     width: 360px;
     height: 480px;
     background: var(--card-bg);
